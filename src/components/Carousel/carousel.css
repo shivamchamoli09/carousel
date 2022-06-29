@@ -1,0 +1,32 @@
+.carousel {
+    overflow: hidden;
+}
+
+.inner {
+    white-space: nowrap;
+}
+
+.carousel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+}
+
+.indicators>button {
+    margin: 5px;
+}
+
+.indicator-container {
+    margin: 10px 20px;
+}
+
+.icon {
+    font-size: 24px;
+    cursor: pointer;
+}

@@ -1,25 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { CarouseItem, Carousel } from './components';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Carousel infiniteSlide={false} autoSlide={false} autoSlideInterval={1000}
+      pauseOnHover={true} showIndicators={true}
+      rightIndicatorClass="fa-solid fa-angle-right"
+      leftIndicatorClass="fa-solid fa-angle-left"
+      tansition={0.5}
+    >
+      <CarouseItem>Item 1</CarouseItem>
+      <CarouseItem>Item 2</CarouseItem>
+      <CarouseItem>Item 3</CarouseItem>
+    </Carousel>
   );
 }
 
