@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { CarouseItem, Carousel } from './components';
+import { CarouselItem, Carousel } from './components';
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
       leftIndicatorClass="fa-solid fa-angle-left"
       tansition={0.5}
     >
-      <CarouseItem>Item 1</CarouseItem>
-      <CarouseItem>Item 2</CarouseItem>
-      <CarouseItem>Item 3</CarouseItem>
+      <CarouselItem>Item 1</CarouselItem>
+      <CarouselItem>Item 2</CarouselItem>
+      <CarouselItem>Item 3</CarouselItem>
     </Carousel>
   );
 }

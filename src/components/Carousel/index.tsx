@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import './carousel.css';
 
-const CarouseItem: React.FC<any> = (props: any) => {
+const CarouselItem: React.FC<any> = (props: any) => {
     return (
         <div className='carousel-item' style={{ width: props?.width }}>
             {props?.children}
@@ -99,4 +99,4 @@ const Carousel: React.FC<any> = (props: ICarousel) => {
     </div >
 }
 
-export { Carousel, CarouseItem }
+export { Carousel, CarouselItem }
