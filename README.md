@@ -1,7 +1,7 @@
 # Simple carousel for react.
 
 ```
-    import {Carousel, CarouselItem } from '@shivamchamoli1997/carousel';
+    import {Carousel, CarouselItem } from '@shivamchamoli1997/carousel/dist';
 
     <Carousel infiniteSlide={false} autoSlide={false} autoSlideInterval={1000}
       pauseOnHover={true} showIndicators={true}
@@ -14,7 +14,12 @@
     </Carousel>
 ```
 
+Note - You need to import carousel css from root app:-
+import '@shivamchamoli1997/carousel/dist/index.css';
+
+
 ## Carousel properties:
+###    currentIndex?: number // current index of slide
 ###    infiniteSlide?: boolean; // allow to infinitely slide
 ###    autoSlide?: boolean;     // allow auto slide of items
 ###    autoSlideInterval?: number;  // give auto slide interval time
@@ -26,5 +31,5 @@
 
 Note: Indicators: leftIndicatorClass && rightIndicatorClass takes fontawesome classes to add icons from
 font awesome library. If provided, you need to import or call fontawsome cdn css link to display icons
-eg.   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> 
+##### eg.   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> 
  
