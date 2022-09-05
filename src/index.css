@@ -1,20 +1,21 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .carousel {
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .inner {
@@ -33,12 +34,38 @@ code {
   justify-content: center;
 }
 
-.indicators>button {
-  margin: 5px;
+.indicator-container {
+  margin: 0px 10px;
+  cursor: pointer;
 }
 
-.indicator-container {
-  margin: 10px 20px;
+.default-indicator {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+
+.default-indicator:hover {
+  background-color: #cccc;
+}
+
+.bottom-inside-carousel {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+}
+
+.indicator-container:hover {
+}
+
+.left-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+.right-indicator {
+  position: absolute;
+  top: 50%;
+  right: 0;
 }
 
 .icon {

@@ -1,5 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import LeftArrowIcon from "../../static/svgs/left_arrow";
+import RightArrowIcon from "../../static/svgs/right_arrow";
+
+const RightIndicator = ({ className }: { className: string }) => {
+  return (
+    <div className={`default-indicator ${className}`}>
+      <RightArrowIcon />
+    </div>
+  );
+};
+
+const LeftIndicator = ({ className }: { className: string }) => {
+  return (
+    <div className={`default-indicator ${className}`}>
+      <LeftArrowIcon />
+    </div>
+  );
+};
 
 const CarouselItem = (props: any) => {
   return (
@@ -19,12 +37,26 @@ interface ICarousel {
   showIndicators?: boolean;
   leftIndicatorClass?: string;
   rightIndicatorClass?: string;
+  indicatorPosition?: "1" | "2" | "3";
+  leftIndicator?: JSX.Element;
+  rightIndicator?: JSX.Element;
   tansition?: string | number;
+  allowSwipe?: boolean;
 }
 
 const Carousel = (props: ICarousel) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const {
+    leftIndicator = (
+      <LeftIndicator className={props?.leftIndicatorClass || ""} />
+    ),
+    rightIndicator = (
+      <RightIndicator className={props?.rightIndicatorClass || ""} />
+    ),
+    allowSwipe = false,
+    indicatorPosition = "1",
+  } = props;
 
   useEffect(() => {
     if (props?.autoSlide) {
@@ -46,7 +78,7 @@ const Carousel = (props: ICarousel) => {
     if (typeof props?.currentIndex === "number" && props?.currentIndex >= 0) {
       updateIndex(props.currentIndex);
     }
-  }, [props?.currentIndex]);
+  }, [props.currentIndex]);
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
@@ -61,9 +93,11 @@ const Carousel = (props: ICarousel) => {
     setActiveIndex(newIndex);
   };
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => updateIndex(activeIndex + 1),
-    onSwiped: () => updateIndex(activeIndex - 1),
+  let handlers = {} as any;
+
+  handlers = useSwipeable({
+    onSwipedLeft: () => (allowSwipe ? updateIndex(activeIndex + 1) : () => {}),
+    onSwiped: () => (allowSwipe ? updateIndex(activeIndex - 1) : () => {}),
   });
 
   const handleMouseHover = () => {
@@ -74,6 +108,33 @@ const Carousel = (props: ICarousel) => {
   const handleMouseLeave = () => {
     if (props?.pauseOnHover) {
       setPaused(false);
+    }
+  };
+
+  const getLeftIndicatorClass = (): string => {
+    switch (indicatorPosition) {
+      case "1":
+        return "left-indicator";
+      default:
+        return "";
+    }
+  };
+
+  const getRightIndicatorClass = (): string => {
+    switch (indicatorPosition) {
+      case "1":
+        return "right-indicator";
+      default:
+        return "";
+    }
+  };
+
+  const getIndicatorContainerClass = () => {
+    switch (indicatorPosition) {
+      case "3":
+        return "bottom-inside-carousel";
+      default:
+        return "";
     }
   };
 
@@ -98,43 +159,29 @@ const Carousel = (props: ICarousel) => {
         })}
       </div>
       {props?.showIndicators && (
-        <div id="indicators" className="indicators">
-          {props?.leftIndicatorClass?.length ? (
-            <div className="indicator-container">
-              <i
-                onClick={() => {
-                  updateIndex(activeIndex - 1);
-                }}
-                className={`icon fas ${props?.leftIndicatorClass}`}
-              ></i>
-            </div>
-          ) : (
-            <button
-              onClick={() => {
-                updateIndex(activeIndex - 1);
-              }}
-            >
-              Prev
-            </button>
-          )}
-          {props?.rightIndicatorClass?.length ? (
-            <div className="indicator-container">
-              <i
-                onClick={() => {
-                  updateIndex(activeIndex + 1);
-                }}
-                className={`icon fas ${props?.rightIndicatorClass}`}
-              ></i>
-            </div>
-          ) : (
-            <button
-              onClick={() => {
-                updateIndex(activeIndex + 1);
-              }}
-            >
-              Next
-            </button>
-          )}
+        <div
+          id="indicators"
+          className={`indicators ${getIndicatorContainerClass()}`}
+        >
+          <div
+            className={`indicator-container ${getLeftIndicatorClass()}`}
+            onClick={() => {
+              updateIndex(activeIndex - 1);
+            }}
+          >
+            {leftIndicator}
+          </div>
+
+          <div
+            className={`indicator-container ${getRightIndicatorClass()} ${
+              props?.rightIndicatorClass
+            }`}
+            onClick={() => {
+              updateIndex(activeIndex + 1);
+            }}
+          >
+            {rightIndicator}
+          </div>
         </div>
       )}
     </div>

@@ -1,9 +1,9 @@
 {
   "name": "@shivamchamoli1997/carousel",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "author": "Shivam Chamoli",
   "private": false,
-  "main": "index.js",
+  "main": "dist/index.js",
   "source": "src/index.js",
   "repository": {
     "type": "git",
@@ -11,7 +11,9 @@
   },
   "keywords": [
     "react",
-    "carousel"
+    "carousel",
+    "react-carousel",
+    "simple carousel"
   ],
   "files": [
     "dist",
@@ -25,21 +27,12 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "@babel/runtime": "^7.17.9",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.41",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "react-scripts": "5.0.1",
     "react-swipeable": "^7.0.0",
-    "typescript": "^4.7.4",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -69,9 +62,18 @@
     "@babel/preset-react": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-typescript": "^4.0.0",
+    "@types/eslint": "^8.4.6",
+    "@types/estree": "^1.0.0",
+    "@types/prettier": "^2.7.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.0",
+    "eslint": "^8.23.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
     "rollup": "^2.70.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-styles": "^4.0.0",
