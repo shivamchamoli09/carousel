@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import LeftArrowIcon from "../../static/svgs/left_arrow";
 import RightArrowIcon from "../../static/svgs/right_arrow";
+import { ICarousel } from "./types";
 
 const RightIndicator = ({ className }: { className: string }) => {
   return (
@@ -19,30 +20,16 @@ const LeftIndicator = ({ className }: { className: string }) => {
   );
 };
 
-const CarouselItem = (props: any) => {
+const CarouselItem = (props: {
+  children: JSX.Element | any;
+  width?: string;
+}) => {
   return (
     <div className="carousel-item" style={{ width: props?.width }}>
       {props?.children}
     </div>
   );
 };
-
-interface ICarousel {
-  currentIndex?: number;
-  children: JSX.Element | JSX.Element[];
-  infiniteSlide?: boolean;
-  autoSlide?: boolean;
-  autoSlideInterval?: number;
-  pauseOnHover?: boolean;
-  showIndicators?: boolean;
-  leftIndicatorClass?: string;
-  rightIndicatorClass?: string;
-  indicatorPosition?: "1" | "2" | "3";
-  leftIndicator?: JSX.Element;
-  rightIndicator?: JSX.Element;
-  tansition?: string | number;
-  allowSwipe?: boolean;
-}
 
 const Carousel = (props: ICarousel) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -56,6 +43,8 @@ const Carousel = (props: ICarousel) => {
     ),
     allowSwipe = false,
     indicatorPosition = "1",
+    rightIndicatorContainerClass = "",
+    leftIndicatorContainerClass = "",
   } = props;
 
   useEffect(() => {
@@ -164,20 +153,31 @@ const Carousel = (props: ICarousel) => {
           className={`indicators ${getIndicatorContainerClass()}`}
         >
           <div
-            className={`indicator-container ${getLeftIndicatorClass()}`}
+            className={`indicator-container ${leftIndicatorContainerClass} ${getLeftIndicatorClass()}`}
             onClick={() => {
               updateIndex(activeIndex - 1);
+            }}
+            style={{
+              visibility:
+                activeIndex === 0 && props.hideIndicatorsByPosition
+                  ? "hidden"
+                  : "visible",
             }}
           >
             {leftIndicator}
           </div>
 
           <div
-            className={`indicator-container ${getRightIndicatorClass()} ${
-              props?.rightIndicatorClass
-            }`}
+            className={`indicator-container ${rightIndicatorContainerClass} ${getRightIndicatorClass()}`}
             onClick={() => {
               updateIndex(activeIndex + 1);
+            }}
+            style={{
+              visibility:
+                activeIndex + 1 === React.Children.count(props?.children) &&
+                props.hideIndicatorsByPosition
+                  ? "hidden"
+                  : "visible",
             }}
           >
             {rightIndicator}
