@@ -1,4 +1,5 @@
-# Simple carousel for react. (https://www.npmjs.com/package/@shivamchamoli1997/carousel)
+# Simple carousel for react.
+#### https://www.npmjs.com/package/@shivamchamoli1997/carousel
 
 ```
     import {Carousel, CarouselItem } from '@shivamchamoli1997/carousel';
