@@ -1,6 +1,6 @@
 {
   "name": "@shivamchamoli1997/carousel",
-  "version": "0.4.3",
+  "version": "0.4.8",
   "author": "Shivam Chamoli",
   "private": false,
   "main": "dist/index.js",
@@ -25,7 +25,8 @@
     "clean": "rimraf dist",
     "build": "tsc",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "npm-publish": "npm run build && copy ./src/index.css index.css ./dist"
   },
   "dependencies": {
     "react-swipeable": "^7.0.0"
